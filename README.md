@@ -1,6 +1,6 @@
 # memscan — Windows user‑mode memory scanner
 
-`memscan.py` is a fast Windows user‑mode memory scanner. It searches for byte signatures (with wildcards) and strings (ASCII/UTF‑16LE), supports **live scanning**, and can export clean **JSON reports**.
+`oner.py` is a fast Windows user‑mode memory scanner. It searches for byte signatures (with wildcards) and strings (ASCII/UTF‑16LE), supports **live scanning**, and can export clean **JSON reports**.
 
 ## Features
 
@@ -29,19 +29,19 @@ pip install psutil
 By PID:
 
 ```bash
-python memscan.py --pid 1234 --sig "StackPivot=90 90 ?? E8" --find "(http|https)://" --json-out out.json
+python oner.py --pid 1234 --sig "StackPivot=90 90 ?? E8" --find "(http|https)://" --json-out out.json
 ```
 
 By process name (substring allowed), live 2s, show only new hits:
 
 ```bash
-python memscan.py --name notepad --sig "WOW=48 8B ?? 05 ?? E8" --live 2 --diff-only
+python oner.py --name notepad --sig "WOW=48 8B ?? 05 ?? E8" --live 2 --diff-only
 ```
 
 Using a signature file:
 
 ```bash
-python memscan.py --name chrome --sig-file sigs.txt --find "api_key=.{16,}" --json-out results.json
+python oner.py --name chrome --sig-file sigs.txt --find "api_key=.{16,}" --json-out results.json
 ```
 
 ## Signatures
@@ -68,7 +68,7 @@ python memscan.py --name chrome --sig-file sigs.txt --find "api_key=.{16,}" --js
 Rescans the process on an interval and tracks *new* hits.
 
 ```bash
-python memscan.py --name app --sig-file sigs.txt --find "token_[A-Za-z0-9]+" --live 3 --diff-only
+python oner.py --name app --sig-file sigs.txt --find "token_[A-Za-z0-9]+" --live 3 --diff-only
 ```
 
 * `--live <seconds>` — rescan interval.
